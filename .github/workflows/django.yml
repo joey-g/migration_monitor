@@ -45,8 +45,8 @@ jobs:
 
     - name: Check migrations
       run: |
-        git fetch origin main:main  # this fetches the main branch
-        git diff --name-only origin/main | grep 'migrations/.*\.py$' | xargs -I {} python check_indexes.py {}
+        git fetch origin main:origin_main  # this fetches the main branch into origin_main
+        git diff --name-only origin_main | grep 'migrations/.*\.py$' | xargs -I {} python check_indexes.py {}
 
     - name: Run Tests
       run: |
