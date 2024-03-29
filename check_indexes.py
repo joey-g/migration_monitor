@@ -12,4 +12,4 @@ def check_migration(filename):
         sys.exit(1)
 
 if __name__ == '__main__':
-    check_migration_file(sys.argv[1])
+    check_migration(sys.argv[1])

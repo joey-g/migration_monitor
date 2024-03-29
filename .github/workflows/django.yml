@@ -24,6 +24,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Fetches all branches
 
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
@@ -43,6 +45,7 @@ jobs:
 
     - name: Check migrations
       run: |
+        git fetch origin main:main  # this fetches the main branch
         git diff --name-only origin/main | grep 'migrations/.*\.py$' | xargs -I {} python check_indexes.py {}
 
     - name: Run Tests
