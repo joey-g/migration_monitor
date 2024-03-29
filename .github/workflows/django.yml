@@ -41,6 +41,10 @@ jobs:
           sleep 1
         done
 
+    - name: Check migrations
+      run: |
+        git diff --name-only origin/main | grep 'migrations/.*\.py$' | xargs -I {} python check_indexes.py {}
+
     - name: Run Tests
       run: |
         python manage.py test
