@@ -46,11 +46,11 @@ jobs:
     - name: Check migrations
       run: |
         git fetch origin main:origin_main  # this fetches the main branch into origin_main
-        echo "Files changed from origin_main:"
-        git diff --name-only origin_main
-        echo "Migration files changed from origin_main:"
-        git diff --name-only origin_main | grep 'migrations/.*\.py$'
-        git diff --name-only origin_main | grep 'migrations/.*\.py$' | xargs -I {} python check_indexes.py {}
+        echo "Files changed from origin_main~1:"
+        git diff --name-only origin_main~1
+        echo "Migration files changed from origin_main~1:"
+        git diff --name-only origin_main~1 | grep 'migrations/.*\.py$'
+        git diff --name-only origin_main~1 | grep 'migrations/.*\.py$' | xargs -I {} python check_indexes.py {}
 
     - name: Run Tests
       run: |
