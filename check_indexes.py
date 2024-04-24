@@ -10,7 +10,7 @@ def check_migration(contents):
         # Regular expression matches 'CREATE INDEX' statements for the given table that are
         # not followed by 'CONCURRENTLY'. oUses a negative lookahead assertion to ensure
         # 'CONCURRENTLY' does not follow 'CREATE INDEX'.
-        regex = r'CREATE INDEX .* ON "?{}"? \S+'.format(table)
+        regex = r'CREATE INDEX .* ON "?{}"? (?!.*CONCURRENTLY)'.format(table)
         if re.search(regex, contents, re.MULTILINE | re.IGNORECASE):
             print('Warning: Migration adds an index without the CONCURRENTLY option on table {}'.format(table))
             sys.exit(1)
